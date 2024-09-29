@@ -17,6 +17,10 @@ const schema = mongoose.schema({
     required: true,
     type: Boolean,
   },
+  product: {
+    type: mongoose.Types.ObjectId,
+    required: true,
+  },
 });
 
 schema.virtual("answers", {
