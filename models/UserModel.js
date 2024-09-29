@@ -19,6 +19,12 @@ const schema = mongoose.schema({
   },
 });
 
+schema.virtual("cart", {
+  ref: "ShoppingCart",
+  localField: "_id",
+  foreignField: "user",
+});
+
 const UserModel = mongoose.models.User || mongoose.model("User", schema);
 
 export default UserModel;
