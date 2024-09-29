@@ -17,10 +17,6 @@ const schema = mongoose.schema({
     required: true,
     type: String,
   },
-  img: {
-    required: true,
-    type: String,
-  },
 });
 
 const UserModel = mongoose.models.User || mongoose.model("User", schema);
