@@ -5,7 +5,7 @@ const connectToDB = async () => {
     if (mongoose.connections[0].readyState) {
       return true;
     }
-    await mongoose.connection("mongodb://localhost:27017/computer");
+    await mongoose.connect("mongodb://localhost:27017/computer");
     console.log("connect to DB Success");
   } catch (err) {
     console.log(err);
