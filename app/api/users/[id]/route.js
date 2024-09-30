@@ -15,7 +15,7 @@ export async function DELETE(req, { params }) {
     );
   }
 
-  const isUser = await UserModel.findOne({ _id: String(params.id) });
+  const isUser = await UserModel.findOne({ _id: params.id });
   if (!isUser) {
     return new Response(
       JSON.stringify({
