@@ -3,7 +3,7 @@ import connectToDB from "@/utils/db";
 
 export async function POST(req) {
   connectToDB();
-  const body = req.json();
+  const body = await req.json();
   const products = await ProductModel.create({ ...body });
   return Response.json({ message: "محصول با موفقیت انجام شد", data: products });
 }

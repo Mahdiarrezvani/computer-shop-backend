@@ -56,7 +56,7 @@ export async function PUT(req, { params }) {
     );
   }
   
-  const body = req.json();
+  const body = await req.json();
   const productUpdated = await ShoppingCartModel.findOneAndUpdate(
     { _id: params.id },
     { ...body }

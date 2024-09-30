@@ -9,7 +9,7 @@ export async function GET() {
 
 export async function POST(req) {
   connectToDB();
-  const body = req.json();
+  const body = await req.json();
   const comments = await CommentModel.create({ ...body });
   return Response.json({ message: "لیست کامنت ها", data: comments });
 }

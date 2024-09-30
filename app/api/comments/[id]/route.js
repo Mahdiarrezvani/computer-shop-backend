@@ -56,7 +56,7 @@ export async function DELETE(req, { params }) {
     );
   }
 
-  const body = req.json();
+  const body = await req.json();
   await CommentModel.findOneAndUpdate({ _id: params.id }, { ...body });
   return Response.json({ message: "کامنت یا موفقیت ویرایش شد" });
 }

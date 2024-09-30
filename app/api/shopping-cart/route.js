@@ -9,7 +9,10 @@ export async function GET() {
 
 export async function POST(req) {
   connectToDB();
-  const body = req.json();
+  const body = await req.json();
   const product = await ShoppingCartModel.create({ ...body });
-  return Response.json({ message: "محصول با موفقیت به سبد خرید اضافه شد", data: product });
+  return Response.json({
+    message: "محصول با موفقیت به سبد خرید اضافه شد",
+    data: product,
+  });
 }

@@ -33,7 +33,7 @@ export async function DELETE(req, { params }) {
 
 export async function PUT(req, { params }) {
   connectToDB();
-  const body = req.json();
+  const body = await req.json();
 
   if (!isValidObjectId(params.id)) {
     return new Response(
