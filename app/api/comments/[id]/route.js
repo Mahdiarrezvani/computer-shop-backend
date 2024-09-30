@@ -1,9 +1,9 @@
+import CommentModel from "@/models/CommentModel";
 import connectToDB from "@/utils/db";
 import { isValidObjectId } from "mongoose";
 
 export async function DELETE(req, { params }) {
   connectToDB();
-
   if (!isValidObjectId(params.id)) {
     return new Response(
       JSON.stringify({
@@ -15,11 +15,11 @@ export async function DELETE(req, { params }) {
     );
   }
 
-  const product = await ProductModel.findOne({ _id: params.id });
-  if (!product) {
+  const comments = await CommentModel.findOne({ _id: params.id });
+  if (!comments) {
     return new Response(
       JSON.stringify({
-        message: "ایدی محصول اشتباه است",
+        message: "ایدی کامنت اشتباه است",
       }),
       {
         status: 422,
@@ -27,14 +27,12 @@ export async function DELETE(req, { params }) {
     );
   }
 
-  await ProductModel.findOneAndDelete({ _id: params.id });
-  return Response.json({ message: "محصول با موفقیت حذف شد" });
+  await CommentModel.findOneAndDelete({ _id: params.id });
+  return Response.json({ message: "کامنت یا موفقیت حذف شد" });
 }
 
-export async function PUT(req, { params }) {
+export async function DELETE(req, { params }) {
   connectToDB();
-  const body = req.json();
-
   if (!isValidObjectId(params.id)) {
     return new Response(
       JSON.stringify({
@@ -46,11 +44,11 @@ export async function PUT(req, { params }) {
     );
   }
 
-  const product = await ProductModel.findOne({ _id: params.id });
-  if (!product) {
+  const comments = await CommentModel.findOne({ _id: params.id });
+  if (!comments) {
     return new Response(
       JSON.stringify({
-        message: "ایدی محصول اشتباه است",
+        message: "ایدی کامنت اشتباه است",
       }),
       {
         status: 422,
@@ -58,6 +56,7 @@ export async function PUT(req, { params }) {
     );
   }
 
-  await ProductModel.findOneAndUpdate({ _id: params.id }, { ...body });
-  return Response.json({ message: "محصول با موفقیت ویرایش شد" });
+  const body = req.json();
+  await CommentModel.findOneAndUpdate({ _id: params.id }, { ...body });
+  return Response.json({ message: "کامنت یا موفقیت ویرایش شد" });
 }
